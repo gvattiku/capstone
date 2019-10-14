@@ -7,22 +7,23 @@
 import pandas as pd
 from hashlib import md5
 
-path = ''
-file = pd.read_csv(path)
-
 def hashMd5Key(data):
     y = md5()
     y.update(data.encode("utf-8"))
     return y.hexdigest()
 
-file['Hex'] = file['Student ID'].apply(hashMd5Key)
-file[['Student ID', 'Hex']].to_csv('', sep=',', encoding='utf-8')
+
+# In[14]:
 
 
-# In[7]:
+import glob
+fileList = glob.glob(r'C:\Users\vatti\OneDrive\Documents\Misc\Data\Capstone\*')
+fileList
 
-
-file
+for item in fileList:
+    file = pd.read_csv(item)
+    file['Hex'] = file['Student ID'].apply(hashMd5Key)
+    file[['Student ID', 'Hex']].to_csv('', sep=',', encoding='utf-8')
 
 
 # In[9]:

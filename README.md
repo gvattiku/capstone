@@ -1,1 +1,1 @@
-###### Prediction and Statistical analaysis on Blackboard data 
+###### Prediction and Statistical analaysis of Blackboard data 

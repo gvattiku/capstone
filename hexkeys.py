@@ -17,7 +17,7 @@ def hashMd5Key(data):
 
 
 import glob
-fileList = glob.glob(r'C:\Users\vatti\OneDrive\Documents\Misc\Data\Capstone\*')
+fileList = glob.glob('')
 fileList
 
 for item in fileList:

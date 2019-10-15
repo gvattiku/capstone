@@ -21,7 +21,7 @@ keyDf = pd.DataFrame(columns = col)
 keyDf
 
 import glob
-fileList = glob.glob(r'C:\Users\vatti\OneDrive\Documents\Misc\Data\Capstone\*.csv')
+fileList = glob.glob('')
 fileList
 
 def check(list1, list2):

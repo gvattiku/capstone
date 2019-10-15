@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[16]:
 
 
 import pandas as pd
@@ -13,22 +13,38 @@ def hashMd5Key(data):
     return y.hexdigest()
 
 
-# In[14]:
+# In[18]:
 
+
+col = ['Hex','Student ID']
+keyDf = pd.DataFrame(columns = col)
+keyDf
 
 import glob
-fileList = glob.glob('')
+fileList = glob.glob(r'C:\Users\vatti\OneDrive\Documents\Misc\Data\Capstone\*.csv')
 fileList
+
+def check(list1, list2):
+    for item in list1:
+        if item in list2:
+            return False
+        else:
+            return True
 
 for item in fileList:
     file = pd.read_csv(item)
-    file['Hex'] = file['Student ID'].apply(hashMd5Key)
-    file[['Student ID', 'Hex']].to_csv('', sep=',', encoding='utf-8')
+    while check(keyDf['Student ID'], file['Student ID']):
+        file['Hex'] = file['Student ID'].apply(hashMd5Key)
+        keyDf[[0, 1]] = file[['Hex', 'Student ID']]
+        
+keyDf.to_csv('', sep=',', encoding='utf-8')
 
-
-# In[9]:
-
-
-df = file.drop(file.columns[[0, 1, 2, 3, 4, 5]], axis=1) 
-df.to_csv('', sep=',', encoding='utf-8')
+finalDf = file.drop(file.columns[[0, 1, 2, 3, 4, 5]], axis=1) 
+finalDf.to_csv('', sep=',', encoding='utf-8')
+"""
+    if file['Student ID'] not in keyDf['Studend ID']:
+        file['Hex'] = file['Student ID'].apply(hashMd5Key)
+        keyDf[[0, 1]] = file[['Hex', 'Student ID']]
+    else:
+"""
 

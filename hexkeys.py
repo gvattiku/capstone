@@ -6,17 +6,32 @@ import pandas as pd
 import hashlib, binascii
 import os
 
+"""
+Set a password
+"""
 password = "trekEmondaSlr9D"
 
+"""
+Set the path for the work directory
+"""
 os.chdir('/home/r00t/Work/capstone')
 
+"""
+Generate Hashes
+"""
 def hashKey(data):
     global password
     keyGen = hashlib.pbkdf2_hmac('md5', data.encode('utf-8'), password.encode('utf-8'), 100000)
     return binascii.hexlify(keyGen)
 
+"""
+Set the root directory
+"""
 root = '/home/r00t/Work/capstone'
 
+"""
+Work on the all files in directory
+"""
 for file in os.listdir(root):
     df = pd.read_csv(root + '/' + file)
     df['key'] = df['Student ID'].apply(hashKey)

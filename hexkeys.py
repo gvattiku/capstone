@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[41]:
+# In[70]:
 
 
 import pandas as pd
@@ -27,17 +27,19 @@ fileList
 """
 
 
-# In[34]:
+# In[72]:
 
 
+"""
 import os
 root = r'C:\Users\vatti\Downloads\Capstone'
 for file in os.listdir(root):
     df=pd.read_csv(root+'/'+file)
-    df['Student']
+    df['Student ID']
+"""    
 
 
-# In[60]:
+# In[73]:
 
 
 import hashlib, binascii
@@ -48,7 +50,7 @@ def hashKey(data):
     return binascii.hexlify(dk)
 
 
-# In[69]:
+# In[76]:
 
 
 import os
@@ -58,7 +60,7 @@ for file in os.listdir(root):
     df['key'] = df['Student ID'].apply(hashKey)
     df_key_mapping = df[['key', 'Student ID']]
     # drop duplicates from df_new.
-    df_key_mapping.drop_duplicates(subset='Student ID', keep = last)
+    df_key_mapping.drop_duplicates(subset='Student ID', keep = 'last')
     df_key_mapping.to_csv(file+'_keys.csv')
     df = df.drop(df.columns[[0, 1, 2, 3, 4, 5]], axis=1)
     df.to_csv(file+"_anonim_data.csv")

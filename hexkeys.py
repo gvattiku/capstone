@@ -30,11 +30,12 @@ Set the root directory
 root = '/home/r00t/Work/capstone/Data/Input'
 
 """
-Work on the all files in directory
+Work on all files present in the directory
 """
 for file in os.listdir(root):
     df = pd.read_csv(root + '/' + file)
     df['Key'] = df['Student ID'].apply(hashKey)
+    df['Section Code'] = file
     
     dfKeyMap = df[['Key', 'Student ID']]
     dfKeyMap.drop_duplicates(subset ='Student ID', keep ='last')

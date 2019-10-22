@@ -14,7 +14,7 @@ password = "trekEmondaSlr9D"
 """
 Set the path for the work directory
 """
-os.chdir('/home/r00t/Work/capstone')
+#os.chdir('/home/r00t/Work/capstone')
 
 """
 Generate Hashes
@@ -27,24 +27,22 @@ def hashKey(data):
 """
 Set the root directory
 """
-root = '/home/r00t/Work/capstone'
+root = '/home/r00t/Work/capstone/Data/Input'
 
 """
 Work on the all files in directory
 """
 for file in os.listdir(root):
     df = pd.read_csv(root + '/' + file)
-    df['key'] = df['Student ID'].apply(hashKey)
+    df['Key'] = df['Student ID'].apply(hashKey)
     
-    dfKeyMap = df[['key', 'Student ID']]
+    dfKeyMap = df[['Key', 'Student ID']]
     dfKeyMap.drop_duplicates(subset ='Student ID', keep ='last')
-    #dfKeyMap.to_csv(file + '_keys.csv')
     
     df = df.drop(df.columns[[0, 1, 2, 3, 4, 5]], axis =1)
-    df.to_csv(file + "_anonim_data.csv")
+    df.to_csv('/home/r00t/Work/capstone/Data/Output/' +file + "_anonim_data.csv")	
     
-dfKeyMap.to_csv(file + '_keys.csv')
-
+dfKeyMap.to_csv('/home/r00t/Work/capstone/Data/Keys/'+ 'studentKeys.csv', index = False)
 
 """
 def hashMd5Key(data):
